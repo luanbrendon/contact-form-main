@@ -15,9 +15,9 @@
 <body>
 
   <div class="container">
-    <h1>Contact Us</h1>
+    <h1 class="texto-principal">Contact Us</h1>
     <div id="successMessage" class="success-message" role="alert" aria-live="polite">
-        Your message has been sent successfully!
+        
     </div>
     <form id="contactForm" novalidate>
         <div class="inline-input">
@@ -35,18 +35,16 @@
         <input type="email" id="email" name="email" aria-describedby="emailError" required>
 
         
-            <legend class="required">Query Type <span class="error" id="queryTypeError"></span></legend>
-            <div class="radio-group">
-                <div class="radio-campo">
-                    <input type="radio" id="generalEnquiry" name="queryType" value="general" required>
-                    <label for="generalEnquiry">General Enquiry</label>
-                </div>
-                <div class="radio-campo">
-                    <input type="radio" id="supportRequest" name="queryType" value="support">
-                    <label for="supportRequest">Support Request</label>
-                </div>
-            </div>
-        
+        <div class="radio-group">
+            <label class="required">Query Type <span class="error" id="queryTypeError"></span></label>
+            <label class="radio-button">
+                <input type="radio" id="queryType1" name="queryType" value="general">
+                <span for="queryType1">General Enquiry</span>
+                </label>
+            <label class="radio-group">
+                <input type="radio" id="queryType2" name="queryType" value="Support">
+                <span for="queryType2">Support Request</span>
+            </label>
 
         <label for="message" class="required">Message <span class="error" id="messageError"></span></label>
         <textarea id="message" name="message" rows="5" aria-describedby="messageError" required></textarea>
