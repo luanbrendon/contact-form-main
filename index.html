@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="styles.css">
+  
+  <title>Frontend Mentor | Contact form</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+
+</head>
+<body>
+
+  <div class="container">
+    <h1>Contact Us</h1>
+    <div id="successMessage" class="success-message" role="alert" aria-live="polite">
+        Your message has been sent successfully!
+    </div>
+    <form id="contactForm" novalidate>
+        <div class="inline-input">
+            <div>
+                <label for="firstName" class="required">First Name <span class="error" id="firstNameError"></span></label>
+                <input type="text" id="firstName" name="firstName" aria-describedby="firstNameError" required>
+            </div>
+            <div>
+                <label for="lastName" class="required">Last Name <span class="error" id="lastNameError"></span></label>
+                <input type="text" id="lastName" name="lastName" aria-describedby="lastNameError" required>
+            </div>
+        </div>
+
+        <label for="email" class="required">Email Address <span class="error" id="emailError"></span></label>
+        <input type="email" id="email" name="email" aria-describedby="emailError" required>
+
+        
+            <legend class="required">Query Type <span class="error" id="queryTypeError"></span></legend>
+            <div class="radio-group">
+                <div class="radio-campo">
+                    <input type="radio" id="generalEnquiry" name="queryType" value="general" required>
+                    <label for="generalEnquiry">General Enquiry</label>
+                </div>
+                <div class="radio-campo">
+                    <input type="radio" id="supportRequest" name="queryType" value="support">
+                    <label for="supportRequest">Support Request</label>
+                </div>
+            </div>
+        
+
+        <label for="message" class="required">Message <span class="error" id="messageError"></span></label>
+        <textarea id="message" name="message" rows="5" aria-describedby="messageError" required></textarea>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent" class="required">I consent to being contacted by the team</label>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+  
+<script>
+  const form = document.getElementById('contactForm');
+  const successMessage = document.getElementById('successMessage');
+
+  form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Clear existing errors
+      document.querySelectorAll('.error').forEach(el => el.textContent = '');
+      
+      const firstName = form.firstName;
+      const lastName = form.lastName;
+      const email = form.email;
+      const queryType = form.queryType;
+      const message = form.message;
+      const consent = form.consent;
+      let hasError = false;
+
+      if (!firstName.value.trim()) {
+          document.getElementById('firstNameError').textContent = 'First name is required.';
+          hasError = true;
+      }
+
+      if (!lastName.value.trim()) {
+          document.getElementById('lastNameError').textContent = 'Last name is required.';
+          hasError = true;
+      }
+
+      if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+          document.getElementById('emailError').textContent = 'A valid email is required.';
+          hasError = true;
+      }
+
+      if (!form.querySelector('input[name="queryType"]:checked')) {
+          document.getElementById('queryTypeError').textContent = 'Please select a query type.';
+          hasError = true;
+      }
+
+      if (!message.value.trim()) {
+          document.getElementById('messageError').textContent = 'Message is required.';
+          hasError = true;
+      }
+
+      if (!consent.checked) {
+          alert('You must consent to be contacted.');
+          hasError = true;
+      }
+
+      if (!hasError) {
+          successMessage.style.display = 'block';
+          form.reset();
+      }
+  });
+</script>
+  
+  </body>
+</html>
