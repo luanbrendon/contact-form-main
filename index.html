@@ -17,22 +17,22 @@
   <div class="container">
     <h1 class="texto-principal">Contact Us</h1>
     <div id="successMessage" class="success-message" role="alert" aria-live="polite">
-        
+        Formulário enviado com sucesso!
     </div>
     <form id="contactForm" novalidate>
         <div class="inline-input">
             <div>
                 <label for="firstName" class="required">First Name <span class="error" id="firstNameError"></span></label>
-                <input type="text" id="firstName" name="firstName" aria-describedby="firstNameError" required>
+                <input type="text" class="caixa" id="firstName" name="firstName" aria-describedby="firstNameError" required>
             </div>
             <div>
                 <label for="lastName" class="required">Last Name <span class="error" id="lastNameError"></span></label>
-                <input type="text" id="lastName" name="lastName" aria-describedby="lastNameError" required>
+                <input type="text" class="caixa" id="lastName" name="lastName" aria-describedby="lastNameError" required>
             </div>
         </div>
 
         <label for="email" class="required">Email Address <span class="error" id="emailError"></span></label>
-        <input type="email" id="email" name="email" aria-describedby="emailError" required>
+        <input type="email" id="email" class="caixa" name="email" aria-describedby="emailError" required>
 
         
         <div class="radio-group">
@@ -41,7 +41,7 @@
                 <input type="radio" id="queryType1" name="queryType" value="general">
                 <span for="queryType1">General Enquiry</span>
                 </label>
-            <label class="radio-group">
+            <label class="radio-button">
                 <input type="radio" id="queryType2" name="queryType" value="Support">
                 <span for="queryType2">Support Request</span>
             </label>
@@ -58,60 +58,7 @@
     </form>
 </div>
   
-<script>
-  const form = document.getElementById('contactForm');
-  const successMessage = document.getElementById('successMessage');
+<script src="script.js"></script>
 
-  form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      // Clear existing errors
-      document.querySelectorAll('.error').forEach(el => el.textContent = '');
-      
-      const firstName = form.firstName;
-      const lastName = form.lastName;
-      const email = form.email;
-      const queryType = form.queryType;
-      const message = form.message;
-      const consent = form.consent;
-      let hasError = false;
-
-      if (!firstName.value.trim()) {
-          document.getElementById('firstNameError').textContent = 'First name is required.';
-          hasError = true;
-      }
-
-      if (!lastName.value.trim()) {
-          document.getElementById('lastNameError').textContent = 'Last name is required.';
-          hasError = true;
-      }
-
-      if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-          document.getElementById('emailError').textContent = 'A valid email is required.';
-          hasError = true;
-      }
-
-      if (!form.querySelector('input[name="queryType"]:checked')) {
-          document.getElementById('queryTypeError').textContent = 'Please select a query type.';
-          hasError = true;
-      }
-
-      if (!message.value.trim()) {
-          document.getElementById('messageError').textContent = 'Message is required.';
-          hasError = true;
-      }
-
-      if (!consent.checked) {
-          alert('You must consent to be contacted.');
-          hasError = true;
-      }
-
-      if (!hasError) {
-          successMessage.style.display = 'block';
-          form.reset();
-      }
-  });
-</script>
-  
-  </body>
+</body>
 </html>
